@@ -1,15 +1,15 @@
 import { sql } from '@vercel/postgres';
+import { unstable_noStore as noStore } from 'next/cache';
 import {
   CustomerField,
   CustomersTableType,
   InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
-  User,
   Revenue,
+  User,
 } from './definitions';
 import { formatCurrency } from './utils';
-import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
@@ -246,4 +246,22 @@ export async function getUser(email: string) {
     console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
   }
+}
+
+export async function getHealth() {
+  const res = await fetch(`https://randomuser.me/api?gender=female`, {
+    next: { tags: ['health'] },
+  });
+  const data = await res.json();
+  const result = data.results[0];
+  return result.name;
+}
+
+export async function getHealth2() {
+  const res = await fetch(`https://randomuser.me/api?gender=male`, {
+    next: { tags: ['hoge'] },
+  });
+  const data = await res.json();
+  const result = data.results[0];
+  return result.name;
 }
