@@ -9,9 +9,9 @@ import {
   RevenueChartSkeleton,
 } from '@/app/ui/skeletons';
 import { Metadata } from 'next';
- 
+
 export const metadata: Metadata = {
-  title: 'ダッシュボード'
+  title: 'ダッシュボード',
 };
 
 export default async function Page() {
