@@ -247,21 +247,3 @@ export async function getUser(email: string) {
     throw new Error('Failed to fetch user.');
   }
 }
-
-export async function getHealth() {
-  const res = await fetch(`https://randomuser.me/api`, {
-    next: { tags: ['health'] },
-  });
-  const data = await res.json();
-  const result = data.results[0];
-  return result.name;
-}
-
-export async function getHealth2() {
-  const res = await fetch(`https://fakerapi.it/api/v2/products`, {
-    next: { tags: ['hoge'] },
-  });
-  const data = await res.json();
-  const result = data.data[0];
-  return result.name;
-}

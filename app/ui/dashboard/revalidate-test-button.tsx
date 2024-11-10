@@ -30,7 +30,7 @@ export function JustRevalidateButton() {
   return (
     <button
       type="button"
-      onClick={() => justRevalidate()}
+      onClick={async () => await justRevalidate()}
       style={{ border: '1px solid blue' }}
     >
       Just Revalidate

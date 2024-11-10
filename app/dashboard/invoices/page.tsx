@@ -1,5 +1,5 @@
-import { fetchInvoicesPages, getHealth, getHealth2 } from '@/app/lib/data';
-import { JustRevalidateButton } from '@/app/ui/dashboard/revalidate-test-button';
+import { fetchInvoicesPages } from '@/app/lib/data';
+import RevalidateCheckWrapper from '@/app/ui/dashboard/revalidate-check-wrapper';
 import { lusitana } from '@/app/ui/fonts';
 import { CreateInvoice } from '@/app/ui/invoices/buttons';
 import Pagination from '@/app/ui/invoices/pagination';
@@ -24,8 +24,6 @@ export default async function Page({
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
 
-  const health = await getHealth();
-  const health2 = await getHealth2();
   const totalPages = await fetchInvoicesPages(query);
 
   return (
@@ -33,9 +31,7 @@ export default async function Page({
       <div className="flex w-full items-center justify-between">
         <h1 className={`${lusitana.className} text-2xl`}>Invoices</h1>
       </div>
-      <p>{JSON.stringify(health)}</p>
-      <p>{JSON.stringify(health2)}</p>
-      <JustRevalidateButton />
+      <RevalidateCheckWrapper />
       {/* <RevalidateTestButton /> */}
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search invoices..." />
